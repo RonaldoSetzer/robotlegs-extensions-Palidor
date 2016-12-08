@@ -58,48 +58,48 @@
 <h2>Setup</h2>
 
 <div class="highlight"><pre>
-const robotlegsContext:IContext = new Context();
-robotlegsContext.install( PalidorBundle );
-robotlegsContext.configure( YourConfig, starling, new ContextView( this ) );
+<span class="kd">const</span> robotlegsContext:<span class="kt">IContext</span> = <span class="k">new</span> <span class="nc">Context</span>();
+robotlegsContext.<span class="na">install</span>( <span class="nc">PalidorBundle</span> );
+robotlegsContext.<span class="na">configure</span>( <span class="nc">YourConfig</span>, starling, <span class="k">new</span> <span class="nc">ContextView</span>( <span class="k">this</span> ) );
 </pre></div>
 
 <h3>IConfig Example</h3>
 
 <div class="highlight"><pre>
-public class YourConfig implements IConfig
-{
-    [Inject]
-    public var eventDispatcher:EventDispatcher; //starling.events.EventDispatcher
+<span class="kd">public</span> <span class="kd">class</span> YourConfig<span class="kd"> implements </span>IConfig
+<span class="o">{</span>
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> eventDispatcher:<span class="kt">EventDispatcher</span>; <span class="c">//starling.events.EventDispatcher</span>
 
-    [Inject]
-    public var mediatorMap:IMediatorMap;
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> mediatorMap:<span class="kt">IMediatorMap</span>;
 
-    [Inject]
-    public var context:IContext;
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> context:<span class="kt">IContext</span>;
 
-    [Inject]
-    public var flowManager:IFlowManager;
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> flowManager:<span class="kt">IFlowManager</span>;
 
-    [Inject]
-    public var commandMap:IStarlingCommandMap;
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> commandMap:<span class="kt">IStarlingCommandMap</span>;
 
-    public function configure():void
-    {
-        context.afterInitializing( initialize );
+    <span class="kd">public</span> <span class="kd">function </span><span class="nf">configure</span>():<span class="kt">void</span>
+    <span class="o">{</span>
+        context.<span class="na">afterInitializing</span>( initialize );
     }
 
-    private function initialize():void
-    {
-        commandMap.map( CustomEvent.COMMAND_01 ).toCommand( FirstCommand );
-        commandMap.map( CustomEvent.COMMAND_02 ).toCommand( SecondCommand );
+    <span class="kd">private</span> <span class="kd">function </span><span class="nf">initialize</span>():<span class="kt">void</span>
+    <span class="o">{</span>
+        commandMap.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">COMMAND_01</span> ).<span class="na">toCommand</span>( <span class="nc">FirstCommand</span> );
+        commandMap.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">COMMAND_02</span> ).<span class="na">toCommand</span>( <span class="nc">SecondCommand</span> );
 
-        mediatorMap.map( FirstView ).toMediator( FirstViewMediator );
-        mediatorMap.map( FirstFloatingView ).toMediator( FirstFloatingViewMediator );
+        mediatorMap.<span class="na">map</span>( <span class="nc">FirstView</span> ).<span class="na">toMediator</span>( <span class="nc">FirstViewMediator</span> );
+        mediatorMap.<span class="na">map</span>( <span class="nc">FirstFloatingView</span> ).<span class="na">toMediator</span>( <span class="nc">FirstFloatingViewMediator</span> );
 
-        flowManager.map( CustomEvent.SHOW_FIRST_VIEW ).toView( FirstView );
-        flowManager.map( CustomEvent.SHOW_FIRST_FLOATING_VIEW ).toFloatingView( FirstFloatingView );
+        flowManager.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">SHOW_FIRST_VIEW</span> ).<span class="na">toView</span>( <span class="nc">FirstView</span> );
+        flowManager.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">SHOW_FIRST_FLOATING_VIEW</span> ).<span class="na">toFloatingView</span>( FirstFloatingView );
 
-        eventDispatcher.dispatchEventWith( CustomEvent.SHOW_FIRST_VIEW );
+        eventDispatcher.<span class="na">dispatchEventWith</span>( <span class="nc">CustomEvent</span>.<span class="no">SHOW_FIRST_VIEW</span> );
     }
 }</pre></div>
 
@@ -108,34 +108,34 @@ public class YourConfig implements IConfig
 <h3>Mapping</h3>
 
 <div class="highlight"><pre>
-mediatorMap.map( FirstView ).toMediator( FirstViewMediator );
+mediatorMap.<span class="na">map</span>( <span class="nc">FirstView</span> ).<span class="na">toMediator</span>( <span class="nc">FirstViewMediator</span> );
 </pre></div>
 
 <h3>Mediator Architecture</h3>
 
 <div class="highlight"><pre>
-public class FirstViewMediator extends StarlingMediator
-{
-    [Inject]
-    public var view:FirstView;
+<span class="kd">public</span> <span class="kd">class</span> FirstViewMediator<span class="kd"> extends </span>StarlingMediator
+<span class="o">{</span>
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> view:<span class="kt">FirstView</span>;
 
-    override public function initialize():void
-    {
-        // view added on Stage
+    <span class="kd">override </span><span class="kd">public</span> <span class="kd">function </span><span class="nf">initialize</span>():<span class="kt">void</span>
+    <span class="o">{</span>
+        <span class="c">// view added on Stage</span>
     }
 
-    override public function destroy():void
-    {
-        // view removed from Stage
+    <span class="kd">override </span><span class="kd">public</span> <span class="kd">function </span><span class="nf">destroy</span>():<span class="kt">void</span>
+    <span class="o">{</span>
+        <span class="c">// view removed from Stage</span>
     }
 }</pre></div>
 
 <h2>EventMap</h2>
 
 <div class="highlight"><pre>
-eventMap.mapListener( view, Event.COMPLETE, handler );
-eventMap.mapListener( view.button, Event.TRIGGERED, handler );
-eventMap.mapListener( eventDispatcher, Event.COMPLETE, handler);
+eventMap.<span class="na">mapListener</span>( view,<span class="nc"> Event</span>.<span class="no">COMPLETE</span>, handler );
+eventMap.<span class="na">mapListener</span>( view.<span class="na">button</span>, <span class="nc">Event</span>.<span class="no">TRIGGERED</span>, handler );
+eventMap.<span class="na">mapListener</span>( eventDispatcher, <span class="nc">Event</span>.<span class="no">COMPLETE</span>, handler);
 </pre></div>
 
 <h2>Command Pattern</h2>
@@ -148,58 +148,58 @@ eventMap.mapListener( eventDispatcher, Event.COMPLETE, handler);
 <h3>Mapping</h3>
 
 <div class="highlight"><pre>
-[Inject]
-public var starlingCommandMap:IStarlingCommandMap;
+<span class="nt">[Inject]</span>
+<span class="kd">public</span> <span class="kd">var</span> starlingCommandMap:<span class="kt">IStarlingCommandMap</span>;
 
-[Inject]
-public var signalCommandMap:ISignalCommandMap;
+<span class="nt">[Inject]</span>
+<span class="kd">public</span> <span class="kd">var</span> signalCommandMap:<span class="kt">ISignalCommandMap</span>;
 
-[Inject]
-public var keyCommandMap:IKeyCommandMap;
+<span class="nt">[Inject]</span>
+<span class="kd">public</span> <span class="kd">var</span> keyCommandMap:<span class="kt">IKeyCommandMap</span>;
 
-private function initialize():void
-{
-    starlingCommandMap.map( CustomEvent.COMMAND_01 ).toCommand( FirstCommand );
-    signalCommandMap.map( CustomSignal ).toCommand( FirstCommand );
-    keyCommandMap.map( "command01" ).toCommand( FirstCommand );
+<span class="kd">private</span> <span class="kd">function </span><span class="nf">initialize</span>():<span class="kt">void</span>
+<span class="o">{</span>
+    starlingCommandMap.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">COMMAND_01</span> ).<span class="na">toCommand</span>( <span class="nc">FirstCommand</span> );
+    signalCommandMap.<span class="na">map</span>( <span class="nc">CustomSignal</span> ).<span class="na">toCommand</span>( <span class="nc">FirstCommand</span> );
+    keyCommandMap.<span class="na">map</span>( <span class="s">"command01"</span> ).<span class="na">toCommand</span>( <span class="nc">FirstCommand</span> );
 }</pre></div>
 
 <h3>Command Architecture</h3>
 
 <div class="highlight"><pre>
-import robotlegs.bender.bundles.mvcs.Command;
-import starling.events.EventDispatcher;
+<span class="k">import</span> <span class="nn">robotlegs.bender.bundles.mvcs.Command</span>;
+<span class="k">import</span> <span class="nn">starling.events.EventDispatcher</span>;
 
-public class FirstCommand extends Command
-{
-    [Inject]
-    public var eventDispatcher:EventDispatcher;
+<span class="kd">public</span> <span class="kd">class</span> FirstCommand<span class="kd"> extends </span>Command
+<span class="o">{</span>
+    <span class="nt">[Inject]</span>
+    <span class="kd">public</span> <span class="kd">var</span> eventDispatcher:<span class="kt">EventDispatcher</span>;
 
-    override public function execute():void
-    {
-        //your command
+    <span class="kd">override </span><span class="kd">public</span> <span class="kd">function </span><span class="nf">execute</span>():<span class="kt">void</span>
+    <span class="o">{</span>
+        <span class="c">//your command</span>
     }
 }</pre></div>
 
 <h3>Calling a Command</h3>
 
 <div class="highlight"><pre>
-[Inject]
-public var eventDispatcher:EventDispatcher; //starling.events.EventDispatcher
+<span class="nt">[Inject]</span>
+<span class="kd">public</span> <span class="kd">var</span> eventDispatcher<span class="kt">EventDispatcher</span>; <span class="c">//starling.events.EventDispatcher</span>
 
-[Inject]
-public var customSignal:CustomSignal; //your custom signal
+<span class="nt">[Inject]</span>
+<span class="kd">public</span> <span class="kd">var</span> customSignal:<span class="kt">CustomSignal</span>; <span class="c">//your custom signal</span>
 
-[Inject]
-public var keyDispatcher:IKeyDispatcher;
+<span class="nt">[Inject]</span>
+<span class="kd">public</span> <span class="kd">var</span> keyDispatcher:<span class="kt">IKeyDispatcher</span>;
 
-private function initialize():void
-{
-    eventDispatcher.dispatchEventWith( CustomEvent.COMMAND_01 );
+<span class="kd">private</span> <span class="kd">function </span><span class="nf">initialize</span>():<span class="kt">void</span>
+<span class="o">{</span>
+    eventDispatcher.<span class="na">dispatchEventWith</span>( <span class="nc">CustomEvent</span>.<span class="no">COMMAND_01</span> );
 
-    customSignal.dispatch();
+    customSignal.<span class="na">dispatch</span>();
 
-    keyCommandMap.dispatch( "command01" );
+    keyCommandMap.<span class="na">dispatch</span>( <span class="s">"command01"</span> );
 }</pre></div>
 
 <h2>View Manager and Flow Manager</h2>
@@ -211,14 +211,14 @@ private function initialize():void
 <h3>Mapping</h3>
 
 <div class="highlight"><pre>
-flowManager.map( CustomEvent.SHOW_FIRST_VIEW ).toView( FirstView );
-flowManager.map( CustomEvent.SHOW_FIRST_FLOATING_VIEW ).toFloatingView( FirstFloatingView );
+flowManager.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">SHOW_FIRST_VIEW</span> ).<span class="na">toView</span>( <span class="nc">FirstView</span> );
+flowManager.<span class="na">map</span>( <span class="nc">CustomEvent</span>.<span class="no">SHOW_FIRST_FLOATING_VIEW</span> ).<span class="na">toFloatingView</span>( <span class="nc">FirstFloatingView</span> );
 </pre></div>
 
 <h3>Adding a new View</h3>
 
 <div class="highlight"><pre>
-eventDispatcher.dispatchEventWith( CustomEvent.SHOW_FIRST_VIEW );
+eventDispatcher.<span class="na">dispatchEventWith</span>( <span class="nc">CustomEvent</span>.<span class="no">SHOW_FIRST_VIEW</span> );
 </pre></div>
 
 
