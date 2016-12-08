@@ -19,13 +19,13 @@ package setzer.samples.palidor.views
 			background.alpha = .8;
 			addChild( background );
 			
-			_button = Assets.getButton( "Close\nPopup" );
+			_button = Assets.getButton( "CLOSE\nPOPUP" );
 			_button.alignPivot();
 			_button.y = 280;
 			_button.x = 250;
 			addChild( _button );
 			
-			var textField:TextField = Assets.getTextField( "Popup" );
+			var textField:TextField = Assets.getTextField( "[FIRST POPUP]" );
 			textField.alignPivot();
 			textField.hAlign = TextFormatAlign.CENTER;
 			textField.color = 0xFFFFFF;

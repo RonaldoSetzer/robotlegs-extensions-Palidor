@@ -21,7 +21,7 @@ package setzer.samples.palidor.views
 			logo.y = 185;
 			addChild( logo );
 			
-			var textField:TextField = Assets.getTextField( "First View" );
+			var textField:TextField = Assets.getTextField( "[FIRST VIEW]" );
 			textField.alignPivot();
 			textField.hAlign = TextFormatAlign.CENTER;
 			textField.x = 250;

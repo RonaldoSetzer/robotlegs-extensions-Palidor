@@ -31,7 +31,7 @@ package setzer.utils
 		
 		public static function getTextField( text:String = "" ):TextField
 		{
-			return new TextField( 300, 100, text, "Verdana", 36, 0x000000 );	
+			return new TextField( 300, 100, text, "Verdana", 24, 0x000000 );
 		}
 		
 		public static function getImageLogos():Image

@@ -1,3 +1,7 @@
+/**
+ * ...
+ * @author Ronaldo Santiago
+ */
 package robotlegs.bender.bundles.palidor
 {
 	import robotlegs.bender.extensions.contextView.ContextViewExtension;
@@ -10,6 +14,9 @@ package robotlegs.bender.bundles.palidor
 	import robotlegs.bender.extensions.localEventMap.LocalEventMapExtension;
 	import robotlegs.bender.extensions.mediatorMap.MediatorMapExtension;
 	import robotlegs.bender.extensions.modularity.ModularityExtension;
+	import robotlegs.bender.extensions.palidor.SignalCommandMapExtension;
+	import robotlegs.bender.extensions.palidor.StarlingCommandMapExtension;
+	import robotlegs.bender.extensions.palidor.KeyCommandMapExtension;
 	import robotlegs.bender.extensions.viewManager.StageCrawlerExtension;
 	import robotlegs.bender.extensions.viewManager.StageObserverExtension;
 	import robotlegs.bender.extensions.viewManager.ViewManagerExtension;
@@ -18,9 +25,9 @@ package robotlegs.bender.bundles.palidor
 	import robotlegs.bender.framework.api.IBundle;
 	import robotlegs.bender.framework.api.IContext;
 	import robotlegs.bender.framework.api.LogLevel;
-	import robotlegs.bender.extensions.palidor.PalidorContextViewExtension;
-	import robotlegs.bender.extensions.palidor.PalidorIntegrationExtension;
-	import robotlegs.bender.extensions.palidor.PalidorStageSyncExtension;
+	import robotlegs.bender.extensions.palidor.StarlingContextViewExtension;
+	import robotlegs.bender.extensions.palidor.StarlingIntegrationExtension;
+	import robotlegs.bender.extensions.palidor.StarlingStageSyncExtension;
 
 	public class PalidorBundle implements IBundle
 	{
@@ -28,9 +35,27 @@ package robotlegs.bender.bundles.palidor
 		{
 			context.logLevel = LogLevel.DEBUG;
 
-			context.install( TraceLoggingExtension, VigilanceExtension, InjectableLoggerExtension, ContextViewExtension, PalidorContextViewExtension,//Setzer
-					EventDispatcherExtension, ModularityExtension, DirectCommandMapExtension, EventCommandMapExtension, LocalEventMapExtension, ViewManagerExtension, StageObserverExtension, MediatorMapExtension, ViewProcessorMapExtension, StageCrawlerExtension, PalidorIntegrationExtension,//Setzer
-					PalidorStageSyncExtension//Setzer
+			context.install(
+					TraceLoggingExtension,
+					VigilanceExtension,
+					InjectableLoggerExtension,
+					ContextViewExtension,
+					StarlingContextViewExtension,//Palidor
+					EventDispatcherExtension,
+					ModularityExtension,
+					DirectCommandMapExtension,
+					StarlingCommandMapExtension,//Palidor
+					SignalCommandMapExtension,//Palidor
+					KeyCommandMapExtension,//Palidor
+					EventCommandMapExtension,
+					LocalEventMapExtension,
+					ViewManagerExtension,
+					StageObserverExtension,
+					MediatorMapExtension,
+					ViewProcessorMapExtension,
+					StageCrawlerExtension,
+					StarlingIntegrationExtension,//Palidor
+					StarlingStageSyncExtension//Palidor
 			);
 
 			context.configure( ContextViewListenerConfig );
