@@ -1,17 +1,17 @@
 package setzer.samples.palidor.setup
 {
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
-	import robotlegs.bender.extensions.palidor.api.IFlowManager;
+	import robotlegs.bender.extensions.palidor.starlingIntegration.flowManager.api.IFlowManager;
 	import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IContext;
 
 	import setzer.samples.palidor.events.FlowEvent;
-	import setzer.samples.palidor.mediators.SecondViewMediator;
 	import setzer.samples.palidor.mediators.FirstPopupMediator;
 	import setzer.samples.palidor.mediators.FirstViewMediator;
-	import setzer.samples.palidor.views.SecondView;
+	import setzer.samples.palidor.mediators.SecondViewMediator;
 	import setzer.samples.palidor.views.FirstPopup;
 	import setzer.samples.palidor.views.FirstView;
+	import setzer.samples.palidor.views.SecondView;
 
 	import starling.events.EventDispatcher;
 
@@ -51,9 +51,9 @@ package setzer.samples.palidor.setup
 
 		public function mapFlowManager():void
 		{
-			flowManager.mapSetView( FlowEvent.SHOW_FIRST_VIEW, FirstView );
-			flowManager.mapSetView( FlowEvent.SHOW_SECOND_VIEW, SecondView );
-			flowManager.mapAddView( FlowEvent.SHOW_FIRST_POPUP, FirstPopup );
+			flowManager.map( FlowEvent.SHOW_FIRST_VIEW ).toView( FirstView );
+			flowManager.map( FlowEvent.SHOW_SECOND_VIEW ).toView( SecondView );
+			flowManager.map( FlowEvent.SHOW_FIRST_POPUP ).toFloatingView( FirstPopup );
 		}
 	}
 }

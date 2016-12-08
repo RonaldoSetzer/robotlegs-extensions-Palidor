@@ -1,6 +1,6 @@
 package setzer.samples.palidor.mediators
 {
-	import robotlegs.bender.extensions.palidor.api.StarlingMediator;
+	import robotlegs.bender.extensions.palidor.starlingIntegration.starlingViewMap.impl.StarlingMediator;
 	
 	import setzer.samples.palidor.events.FlowEvent;
 	import setzer.samples.palidor.views.SecondView;

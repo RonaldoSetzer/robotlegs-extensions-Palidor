@@ -15,10 +15,10 @@ package setzer.samples.palidor.views
 		
 		public function SecondView()
 		{
-			var background:Quad = Assets.getQuadBackground();
+			var background:Quad = Assets.getQuadBackground(0x000000);
 			addChild( background );
 			
-			_button = Assets.getButton( "Show\nPopup" );
+			_button = Assets.getButton( "SHOW\nFIRST POPUP" );
 			_button.y = 300;
 			_button.x = 20;
 			addChild( _button );
@@ -29,11 +29,12 @@ package setzer.samples.palidor.views
 			logo.y = 185;
 			addChild( logo );
 			
-			var textField:TextField = Assets.getTextField( "Second View" );
+			var textField:TextField = Assets.getTextField( "[SECOND VIEW]" );
 			textField.alignPivot();
 			textField.hAlign = TextFormatAlign.CENTER;
 			textField.x = 250;
 			textField.y = 60;
+			textField.color = 0xFFFFFF;
 			addChild( textField );
 		}
 
